@@ -1,0 +1,48 @@
+<html>
+  <head>
+    <script src= "p5.min.js"></script>
+    <script src= "p5.geolocation.js"></script>
+  </head>
+  <body>
+    <h1 id= "locAvail"></h1>
+    <h1 id= "distance"></h1>
+    <script>
+    var $= document;
+    var distance;
+    var myLat;
+    var myLon;
+    var surpriseLat= 21.306119;
+    var surpriseLon= -157.846834;
+    
+      function setup() {
+        if (geoCheck() == true){
+          $.getElementById('locAvail').innerHTML= "Ready";
+        }
+        else{
+          $.getElementById('locAvail').innerHTML= "Must have GPS enabled";
+        }
+        
+        intervalCurrentPosition(positionPing,1000);
+        //Every 1000 seconds, check your position
+        enableHighAccuracy: true;
+      }
+      
+      function positionPing(position){
+        myLat= position.latitude;
+        myLon= position.longitude;
+        distance= calcGeoDistance(myLat, myLon, surpriseLat, surpriseLon, 'mi');
+        $.getElementById('distance').innerHTML= distance.toFixed(5);
+        if(distance,0.008) {//The closer the number reaches 0.001, the more sensitive it is
+          $.getElementById('locAvail').innerHTML= "SURPRISE";
+          $.body.style.backgroundColor= "green";
+        }
+        else{
+          $.getElementById('locAvail.innerHTML')= " ";
+          $.body.style.backgroundColor= "blue";
+        }
+      }
+        
+    
+    </script>
+  </body>
+</html>
