@@ -2,11 +2,18 @@
   <head>
     <script src= "p5.min.js"></script>
     <script src= "p5.geolocation.js"></script>
+    <style>
+      #title{
+        text-align: center;
+        font-size: 25px;
+      }
+    </style>
   </head>
   <body>
+    <h1 id= "title"></h1>
     <h1 id= "locAvail"></h1>
     <h1 id= "distance"></h1>
-    <h1 id= "title"></h1>
+    
     <script>
     var $= document;
     var distance;
@@ -33,7 +40,7 @@
         myLat= position.latitude;
         myLon= position.longitude;
         distance= calcGeoDistance(myLat, myLon, surpriseLat, surpriseLon, 'mi');
-        $.getElementById('distance').innerHTML= "You are " +distance.toFixed(5)+ " away";
+        $.getElementById('distance').innerHTML= "You are only " +distance.toFixed(5)+ " away";
         if(distance,0.003) {//The closer the number reaches 0.001, the more sensitive it is
           $.getElementById('locAvail').innerHTML= "Getting warmer";
           $.body.style.backgroundColor= "#dbe9b7";
